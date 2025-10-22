@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ===== TOKENS (Tailwind v4) ===== */
+@theme {
+  --color-bg: #050505;
+  --color-paper: #EBECE7;
+  --color-ink: #0A0A0A;
+  --color-pill: #E6F6F0;
+  --color-dot: #BDBEC1;
+
+  --radius-pill: 28px;
+  --radius-blob: 22px;
+
+  --shadow-card: 0 10px 30px rgba(0,0,0,.25);
+  --shadow-insetSoft: inset 0 2px 0 rgba(255,255,255,.45), inset 0 -2px 0 rgba(0,0,0,.08);
+
+  --font-sans: var(--font-inter);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ===== UTILIDADES PERSONALIZADAS (v4) ===== */
+/* ✅ sin el punto; nombres en minúscula */
+@utility container { @apply mx-auto max-w-6xl px-4; }
+
+@utility dotted {
+  background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
+  background-size: 6px 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@utility glass { @apply bg-white/5 backdrop-blur-md border border-white/10; }
+@utility paper { @apply bg-paper text-ink; }
+@utility card { @apply rounded-blob paper shadow-card border border-black/10; }
+@utility pill { @apply rounded-pill px-5 py-2 bg-paper/90 text-ink shadow-insetSoft; }
+@utility soft-pill { @apply rounded-pill px-4 py-2 bg-pill text-ink; }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* ===== BASE ===== */
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body { @apply bg-bg text-white antialiased font-sans; }
+
+/* Scrollbar */
+*::-webkit-scrollbar { height:10px; width:10px }
+*::-webkit-scrollbar-thumb { background:#2a2a2a; border-radius:20px }
+*::-webkit-scrollbar-track { background:#0d0d0d }
