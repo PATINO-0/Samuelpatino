@@ -17,7 +17,7 @@ export default function Contact(){
                 <span className="p-2 rounded-md bg-white/10"><Mail size={18}/></span>
                 <div>
                   <p className="font-semibold">Email</p>
-                  <p className="text-white/70">alex.rivera@email.com</p>
+                  <p className="text-white/70">samipatino1002@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@ export default function Contact(){
                 <span className="p-2 rounded-md bg-white/10"><MapPin size={18}/></span>
                 <div>
                   <p className="font-semibold">Ubicación</p>
-                  <p className="text-white/70">Ciudad de México, México</p>
+                  <p className="text-white/70">San Juan De Pasto, Colombia</p>
                 </div>
               </div>
             </div>
