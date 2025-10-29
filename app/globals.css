@@ -1,176 +1,295 @@
 @import "tailwindcss";
 
-/* ===== TOKENS INSPIRADOS EN APPLE ===== */
+/* ===== TOKENS APPLE DARK MODE ===== */
 @theme {
-  /* Paleta Apple-inspired */
-  --color-bg: #000000;
-  --color-paper: #F5F5F7;
-  --color-ink: #1D1D1F;
+  /* Dark Mode (principal) */
+  --color-dark-bg: #000000;
+  --color-dark-surface: #121212;
+  --color-dark-elevated: #1C1C1E;
+  --color-dark-text: #F5F5F7;
+  --color-dark-text-secondary: #98989D;
+  
+  /* Light Mode */
+  --color-light-bg: #FFFFFF;
+  --color-light-surface: #F5F5F7;
+  --color-light-elevated: #FFFFFF;
+  --color-light-text: #1D1D1F;
+  --color-light-text-secondary: #6E6E73;
+  
+  /* Apple Blue */
   --color-accent: #0071E3;
   --color-accent-dark: #0077ED;
-  --color-glass: rgba(255, 255, 255, 0.72);
-  --color-glass-border: rgba(255, 255, 255, 0.18);
-  --color-dark-glass: rgba(0, 0, 0, 0.4);
+  --color-accent-hover: #0066CC;
   
-  /* Radios Apple */
-  --radius-xl: 28px;
-  --radius-2xl: 40px;
+  /* Liquid Glass */
+  --glass-dark: rgba(28, 28, 30, 0.72);
+  --glass-light: rgba(255, 255, 255, 0.72);
+  --glass-border-dark: rgba(255, 255, 255, 0.08);
+  --glass-border-light: rgba(0, 0, 0, 0.08);
   
-  /* Sombras sutiles tipo Apple */
-  --shadow-soft: 0 2px 16px rgba(0, 0, 0, 0.12);
-  --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.16);
-  --shadow-large: 0 20px 60px rgba(0, 0, 0, 0.24);
+  /* Sombras Apple */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.16);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.24);
+  --shadow-xl: 0 20px 80px rgba(0, 0, 0, 0.32);
   
-  /* Fuentes */
+  /* Radios */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+  
+  /* Timing Functions Apple */
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
   --font-sans: var(--font-inter);
 }
 
-/* ===== UTILIDADES PERSONALIZADAS ===== */
-@utility container { 
-  @apply mx-auto max-w-[980px] px-5 md:px-8; 
+/* ===== UTILITIES ===== */
+@utility container {
+  @apply mx-auto max-w-[1120px] px-6 md:px-8 lg:px-10;
 }
 
-@utility container-large { 
-  @apply mx-auto max-w-[1200px] px-5 md:px-8; 
+@utility section-space {
+  @apply py-20 md:py-28 lg:py-36;
 }
 
-/* Efecto Liquid Glass inspirado en Apple */
+/* Liquid Glass Effect (Apple WWDC 2025) */
 @utility liquid-glass {
-  background: var(--color-glass);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--color-glass-border);
+  background: var(--glass-dark);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--glass-border-dark);
 }
 
-@utility dark-glass {
-  background: var(--color-dark-glass);
-  backdrop-filter: blur(40px) saturate(200%);
-  -webkit-backdrop-filter: blur(40px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Refraction SVG Filter */
+@utility glass-refract {
+  filter: url(#liquid-glass-filter);
 }
 
-@utility apple-card {
-  @apply rounded-[var(--radius-2xl)] bg-paper;
-  box-shadow: var(--shadow-medium);
+/* Apple Cards */
+@utility apple-card-dark {
+  @apply rounded-[var(--radius-lg)] border border-white/5;
+  background: var(--color-dark-elevated);
+  box-shadow: var(--shadow-md);
 }
 
+@utility apple-card-light {
+  @apply rounded-[var(--radius-lg)] border border-black/5;
+  background: var(--color-light-elevated);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Buttons */
 @utility apple-btn {
-  @apply rounded-full px-6 py-3 font-medium transition-all duration-300;
-  @apply bg-accent text-white hover:bg-accent-dark;
+  @apply rounded-full px-7 py-3.5 font-semibold text-[17px] transition-all duration-300;
+  @apply bg-accent text-white hover:bg-accent-hover;
   @apply hover:scale-[1.02] active:scale-[0.98];
+  @apply shadow-md hover:shadow-lg;
 }
 
-@utility apple-btn-outline {
-  @apply rounded-full px-6 py-3 font-medium transition-all duration-300;
+@utility apple-btn-secondary {
+  @apply rounded-full px-7 py-3.5 font-semibold text-[17px] transition-all duration-300;
   @apply border-2 border-accent text-accent hover:bg-accent hover:text-white;
   @apply hover:scale-[1.02] active:scale-[0.98];
 }
 
-@utility section-spacing {
-  @apply py-20 md:py-32;
-}
-
-/* Gradiente sutil Apple */
-@utility apple-gradient {
-  background: linear-gradient(135deg, #F5F5F7 0%, #E8E8ED 100%);
-}
-
-/* Efectos de hover suaves */
+/* Hover Lift */
 @utility hover-lift {
-  @apply transition-all duration-500 ease-out;
-  @apply hover:-translate-y-2 hover:shadow-large;
+  @apply transition-all duration-500 hover:-translate-y-2;
+}
+
+/* Magnetic Effect */
+@utility magnetic {
+  transition: transform 0.3s var(--ease-apple);
 }
 
 /* ===== BASE ===== */
-:root { 
-  color-scheme: dark; 
+:root {
+  color-scheme: dark;
 }
 
-html { 
+html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body { 
-  @apply bg-bg text-white antialiased font-sans;
+body {
+  @apply font-sans antialiased;
   font-size: 17px;
   line-height: 1.47059;
 }
 
-/* Scrollbar minimalista Apple */
-*::-webkit-scrollbar { 
-  width: 8px;
-  height: 8px;
+/* Dark Mode por defecto */
+body.dark {
+  @apply bg-dark-bg text-dark-text;
 }
 
-*::-webkit-scrollbar-thumb { 
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  transition: background 0.3s;
+/* Light Mode */
+body.light {
+  @apply bg-light-bg text-light-text;
 }
 
-*::-webkit-scrollbar-thumb:hover { 
-  background: rgba(255, 255, 255, 0.35);
+/* Light mode overrides para liquid-glass */
+.light .liquid-glass {
+  background: var(--glass-light);
+  border-color: var(--glass-border-light);
 }
 
-*::-webkit-scrollbar-track { 
+/* Hover lift shadow variants */
+.dark .hover-lift:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+.light .hover-lift:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Scrollbar Apple-style */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* Tipografía grande y limpia tipo Apple */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Tipografía Apple */
 .hero-title {
-  font-size: clamp(48px, 7vw, 80px);
+  font-size: clamp(48px, 8vw, 96px);
   font-weight: 700;
   line-height: 1.05;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
 .section-title {
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(36px, 6vw, 64px);
   font-weight: 700;
   line-height: 1.07;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
 }
 
 .body-large {
-  font-size: 21px;
-  line-height: 1.381;
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.4;
   font-weight: 400;
 }
 
-/* Animaciones sutiles */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Animaciones */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+@keyframes glow {
+  0%, 100% { opacity: 0.5; filter: blur(80px); }
+  50% { opacity: 0.8; filter: blur(120px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 8s ease-in-out infinite;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* SVG Liquid Glass Filter */
+svg#liquid-glass-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* Perspective para efectos 3D */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Rotate-Y on hover (para cards) */
+.rotate-y-hover {
+  transition: transform 0.6s var(--ease-apple);
+  transform-style: preserve-3d;
+}
+
+.rotate-y-hover:hover {
+  transform: rotateY(5deg) rotateX(-2deg);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-accent {
+  background: linear-gradient(135deg, #0071E3 0%, #0077ED 50%, #00A1FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .hero-title { font-size: clamp(36px, 10vw, 56px); }
+  .section-title { font-size: clamp(28px, 8vw, 40px); }
+  .body-large { font-size: clamp(17px, 4vw, 19px); }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.animate-scale-in {
-  animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Efecto parallax sutil */
-.parallax-slow {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
