@@ -1,37 +1,125 @@
 "use client";
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
+import { Heart, ArrowUp } from "lucide-react";
+
+const footerLinks = {
+  sections: [
+    {
+      title: "Navegación",
+      links: [
+        { label: "Inicio", href: "#inicio" },
+        { label: "Acerca", href: "#acerca" },
+        { label: "Habilidades", href: "#habilidades" },
+        { label: "Experiencia", href: "#experiencia" },
+      ],
+    },
+    {
+      title: "Proyectos",
+      links: [
+        { label: "Todos los proyectos", href: "#proyectos" },
+        { label: "Destacados", href: "#proyectos" },
+        { label: "Testimonios", href: "#testimonios" },
+        { label: "Contacto", href: "#contacto" },
+      ],
+    },
+    {
+      title: "Social",
+      links: [
+        { label: "GitHub", href: "https://github.com" },
+        { label: "LinkedIn", href: "https://linkedin.com" },
+        { label: "Twitter", href: "https://twitter.com" },
+        { label: "Instagram", href: "https://instagram.com" },
+      ],
+    },
+  ],
+};
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="bg-ink py-12">
+    <footer className="relative dark:bg-dark-elevated light:bg-light-elevated border-t dark:border-white/5 light:border-black/5">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row items-center justify-between gap-6"
-        >
+        {/* Main footer content */}
+        <div className="py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Brand */}
           <div>
-            <h3 className="text-white font-bold text-2xl mb-2">Samuel Patiño</h3>
-            <p className="text-white/60 text-sm">Ingeniero de Software</p>
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="dark:text-white light:text-black font-bold text-2xl mb-4"
+            >
+              Samuel Patiño
+            </motion.h3>
+            <p className="dark:text-white/60 light:text-black/60 text-sm leading-relaxed mb-6">
+              Ingeniero de software especializado en crear experiencias digitales excepcionales.
+            </p>
+            <div className="flex items-center gap-2 dark:text-white/70 light:text-black/70 text-sm">
+              <span>Hecho con</span>
+              <Heart className="w-4 h-4 fill-red-500 text-red-500 animate-pulse" />
+              <span>en Colombia</span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2 text-white/60 text-sm">
-            <span>Hecho con</span>
-            <Heart className="w-4 h-4 fill-red-500 text-red-500 animate-pulse" />
-            <span>en Colombia</span>
-          </div>
-        </motion.div>
+          {/* Links sections */}
+          {footerLinks.sections.map((section, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <h4 className="dark:text-white light:text-black font-semibold mb-4">
+                {section.title}
+              </h4>
+              <ul className="space-y-3">
+                {section.links.map((link, j) => (
+                  <li key={j}>
+                    <a
+                      href={link.href}
+                      className="dark:text-white/60 light:text-black/60 hover:text-accent text-sm transition-colors inline-block hover:translate-x-1 duration-200"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
 
-        <div className="mt-8 pt-8 border-t border-white/10 text-center">
-          <p className="text-white/40 text-sm">
+        {/* Bottom bar */}
+        <div className="py-8 border-t dark:border-white/5 light:border-black/5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="dark:text-white/40 light:text-black/40 text-sm"
+          >
             © {currentYear} Samuel Patiño. Todos los derechos reservados.
-          </p>
+          </motion.p>
+
+          {/* Scroll to top button */}
+          <motion.button
+            onClick={scrollToTop}
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-10 h-10 rounded-full dark:bg-white/10 light:bg-black/10 hover:bg-accent flex items-center justify-center dark:text-white light:text-black hover:text-white transition-all duration-300"
+            aria-label="Volver arriba"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </motion.button>
         </div>
       </div>
+
+      {/* Decorative gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
     </footer>
   );
 }
