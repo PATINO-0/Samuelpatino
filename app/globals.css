@@ -1,99 +1,176 @@
 @import "tailwindcss";
 
-/* ===== TOKENS (Tailwind v4) ===== */
+/* ===== TOKENS INSPIRADOS EN APPLE ===== */
 @theme {
-  --color-bg: #050505;
-  --color-paper: #EBECE7;
-  --color-ink: #0A0A0A;
-  --color-pill: #E6F6F0;
-  --color-dot: #BDBEC1;
-
-  --radius-pill: 28px;
-  --radius-blob: 22px;
-
-  --shadow-card: 0 10px 30px rgba(0,0,0,.25);
-  --shadow-insetSoft: inset 0 2px 0 rgba(255,255,255,.45), inset 0 -2px 0 rgba(0,0,0,.08);
-
+  /* Paleta Apple-inspired */
+  --color-bg: #000000;
+  --color-paper: #F5F5F7;
+  --color-ink: #1D1D1F;
+  --color-accent: #0071E3;
+  --color-accent-dark: #0077ED;
+  --color-glass: rgba(255, 255, 255, 0.72);
+  --color-glass-border: rgba(255, 255, 255, 0.18);
+  --color-dark-glass: rgba(0, 0, 0, 0.4);
+  
+  /* Radios Apple */
+  --radius-xl: 28px;
+  --radius-2xl: 40px;
+  
+  /* Sombras sutiles tipo Apple */
+  --shadow-soft: 0 2px 16px rgba(0, 0, 0, 0.12);
+  --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.16);
+  --shadow-large: 0 20px 60px rgba(0, 0, 0, 0.24);
+  
+  /* Fuentes */
   --font-sans: var(--font-inter);
 }
 
-/* ===== UTILIDADES PERSONALIZADAS (v4) ===== */
-@utility container { @apply mx-auto max-w-6xl px-4; }
-
-@utility dotted {
-  background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
-  background-size: 6px 6px;
+/* ===== UTILIDADES PERSONALIZADAS ===== */
+@utility container { 
+  @apply mx-auto max-w-[980px] px-5 md:px-8; 
 }
 
-@utility glass { @apply bg-white/5 backdrop-blur-md border border-white/10; }
-@utility paper { @apply bg-paper text-ink; }
-@utility card { @apply rounded-blob paper shadow-card border border-black/10; }
-@utility pill { @apply rounded-pill px-5 py-2 bg-paper/90 text-ink shadow-insetSoft; }
-@utility soft-pill { @apply rounded-pill px-4 py-2 bg-pill text-ink; }
-
-/* === Mejoras generales (opcional) === */
-html { scroll-behavior: smooth; }
-:target { scroll-margin-top: 96px; } /* compensa la nav sticky */
-
-/* === Utilidades visuales para Skills === */
-@utility gradient-ink {
-  @apply bg-gradient-to-b from-white to-white/70 text-transparent bg-clip-text;
+@utility container-large { 
+  @apply mx-auto max-w-[1200px] px-5 md:px-8; 
 }
 
-@utility icon-badge {
-  @apply rounded-xl bg-white/60 text-ink p-2 border border-black/10;
+/* Efecto Liquid Glass inspirado en Apple */
+@utility liquid-glass {
+  background: var(--color-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--color-glass-border);
 }
 
-@utility chip {
-  @apply rounded-pill px-4 py-1.5 bg-paper text-ink border border-black/10
-         hover:-translate-y-0.5 transition transform;
+@utility dark-glass {
+  background: var(--color-dark-glass);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@utility skill-card {
-  @apply shadow-card hover:shadow-lg hover:-translate-y-1 transition transform;
+@utility apple-card {
+  @apply rounded-[var(--radius-2xl)] bg-paper;
+  box-shadow: var(--shadow-medium);
+}
+
+@utility apple-btn {
+  @apply rounded-full px-6 py-3 font-medium transition-all duration-300;
+  @apply bg-accent text-white hover:bg-accent-dark;
+  @apply hover:scale-[1.02] active:scale-[0.98];
+}
+
+@utility apple-btn-outline {
+  @apply rounded-full px-6 py-3 font-medium transition-all duration-300;
+  @apply border-2 border-accent text-accent hover:bg-accent hover:text-white;
+  @apply hover:scale-[1.02] active:scale-[0.98];
+}
+
+@utility section-spacing {
+  @apply py-20 md:py-32;
+}
+
+/* Gradiente sutil Apple */
+@utility apple-gradient {
+  background: linear-gradient(135deg, #F5F5F7 0%, #E8E8ED 100%);
+}
+
+/* Efectos de hover suaves */
+@utility hover-lift {
+  @apply transition-all duration-500 ease-out;
+  @apply hover:-translate-y-2 hover:shadow-large;
 }
 
 /* ===== BASE ===== */
-:root { color-scheme: dark; }
-html, body, #root { height: 100%; }
-body { @apply bg-bg text-white antialiased font-sans; }
-
-/* Scrollbar */
-*::-webkit-scrollbar { height:10px; width:10px }
-*::-webkit-scrollbar-thumb { background:#2a2a2a; border-radius:20px }
-*::-webkit-scrollbar-track { background:#0d0d0d }
-
-
-
-/* === Timeline (vertical + horizontal) === */
-@utility timeline-line {
-  @apply absolute left-1/2 -translate-x-1/2 top-0 h-full w-[4px]
-         bg-gradient-to-b from-white/40 via-white/10 to-white/40 rounded-full;
+:root { 
+  color-scheme: dark; 
 }
 
-@utility timeline-dot {
-  @apply h-4 w-4 rounded-full bg-white border border-black/10 shadow-card relative;
+html { 
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@utility timeline-connector {
-  @apply absolute top-1/2 -translate-y-1/2 h-[2px] w-6
-         bg-gradient-to-r from-white/60 to-white/10;
+body { 
+  @apply bg-bg text-white antialiased font-sans;
+  font-size: 17px;
+  line-height: 1.47059;
 }
 
-@utility year-badge {
-  @apply rounded-pill bg-ink text-white text-xs px-3 py-1 tracking-wide;
+/* Scrollbar minimalista Apple */
+*::-webkit-scrollbar { 
+  width: 8px;
+  height: 8px;
 }
 
-@utility icon-chip {
-  @apply rounded-xl bg-white/70 text-ink p-2 border border-black/10;
+*::-webkit-scrollbar-thumb { 
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  transition: background 0.3s;
 }
 
-@utility timeline-card {
-  @apply paper shadow-card hover:shadow-lg hover:-translate-y-1 transition transform;
+*::-webkit-scrollbar-thumb:hover { 
+  background: rgba(255, 255, 255, 0.35);
 }
 
-/* Progreso en móvil (barra debajo del carrusel) */
-@utility timeline-progress {
-  @apply absolute left-0 right-0 -bottom-1 h-[2px]
-         bg-gradient-to-r from-white/30 via-white/70 to-white/30 rounded-full;
+*::-webkit-scrollbar-track { 
+  background: transparent;
+}
+
+/* Tipografía grande y limpia tipo Apple */
+.hero-title {
+  font-size: clamp(48px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.07;
+  letter-spacing: -0.005em;
+}
+
+.body-large {
+  font-size: 21px;
+  line-height: 1.381;
+  font-weight: 400;
+}
+
+/* Animaciones sutiles */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Efecto parallax sutil */
+.parallax-slow {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }

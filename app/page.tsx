@@ -13,12 +13,12 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main className="pb-20">
+      <main>
         <Hero />
         <Stats />
-        <Timeline />
         <About />
         <Skills />
+        <Timeline />
         <Projects />
         <Testimonials />
         <Contact />
