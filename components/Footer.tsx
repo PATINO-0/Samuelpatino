@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Heart, ArrowUp } from "lucide-react";
+import { Heart, ArrowUp, Download } from "lucide-react";
 
 const footerLinks = {
   sections: [
@@ -41,6 +41,16 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const downloadCV = () => {
+    // Crear un elemento <a> temporal para forzar la descarga
+    const link = document.createElement('a');
+    link.href = '/assets/CV.pdf';
+    link.download = 'CV_Samuel_Patino.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <footer className="relative dark:bg-dark-elevated light:bg-light-elevated border-t dark:border-white/5 light:border-black/5">
       <div className="container">
@@ -59,11 +69,22 @@ export default function Footer() {
             <p className="dark:text-white/60 light:text-black/60 text-sm leading-relaxed mb-6">
               Ingeniero de software especializado en crear experiencias digitales excepcionales.
             </p>
-            <div className="flex items-center gap-2 dark:text-white/70 light:text-black/70 text-sm">
+            <div className="flex items-center gap-2 dark:text-white/70 light:text-black/70 text-sm mb-6">
               <span>Hecho con</span>
               <Heart className="w-4 h-4 fill-red-500 text-red-500 animate-pulse" />
               <span>en Colombia</span>
             </div>
+
+            {/* Botón de descarga de CV */}
+            <motion.button
+              onClick={downloadCV}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent hover:bg-accent/90 text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <Download className="w-4 h-4" />
+              Descargar CV
+            </motion.button>
           </div>
 
           {/* Links sections */}
@@ -83,6 +104,8 @@ export default function Footer() {
                   <li key={j}>
                     <a
                       href={link.href}
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       className="dark:text-white/60 light:text-black/60 hover:text-accent text-sm transition-colors inline-block hover:translate-x-1 duration-200"
                     >
                       {link.label}

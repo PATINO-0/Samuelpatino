@@ -6,57 +6,35 @@ import { useState } from "react";
 
 const projects = [
   {
-    title: "E-commerce Platform",
-    description: "Plataforma completa de comercio electrónico con pasarela de pagos, gestión de inventario y panel de administración.",
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",
-    tags: ["Next.js", "Stripe", "PostgreSQL", "Prisma"],
-    github: "#",
-    demo: "#",
+    title: "Editor de Imágenes Web",
+    description: "Editor virtual completo desarrollado en JavaScript que permite crear, editar, recortar, agregar múltiples imágenes y guardar las modificaciones en tiempo real.",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
+    tags: ["JavaScript", "Canvas API", "HTML5", "CSS3"],
+    github: "https://github.com/PATINO-0/image-editor",
     featured: true,
   },
   {
-    title: "Dashboard Analytics",
-    description: "Panel de control analítico con visualizaciones en tiempo real y reportes personalizables.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    tags: ["React", "D3.js", "Node.js", "MongoDB"],
-    github: "#",
-    demo: "#",
+    title: "API de Gestión de Productos",
+    description: "API RESTful robusta para la gestión completa de productos de negocios, incluyendo inventario, categorías y operaciones CRUD.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    tags: ["Java", "Spring Boot", "MySQL", "REST API"],
+    github: "https://github.com/PATINO-0/Api-Products",
     featured: true,
   },
   {
-    title: "Social Media App",
-    description: "Aplicación social con chat en tiempo real, sistema de notificaciones y feed personalizado.",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
-    tags: ["React Native", "Firebase", "WebSocket"],
-    github: "#",
-    demo: "#",
-    featured: false,
-  },
-  {
-    title: "Task Management",
-    description: "Sistema de gestión de tareas con colaboración en equipo, kanban boards y timelines.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
-    tags: ["Vue.js", "Express", "PostgreSQL"],
-    github: "#",
-    demo: "#",
-    featured: false,
-  },
-  {
-    title: "AI Content Generator",
-    description: "Generador de contenido impulsado por IA para marketing y redes sociales.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
-    tags: ["Next.js", "OpenAI", "Python", "FastAPI"],
-    github: "#",
-    demo: "#",
+    title: "Sistema de Notificaciones con Lambda",
+    description: "Aplicación serverless con funciones Lambda AWS para envío automático de notificaciones mediante sistema de eventos con operaciones CRUD completas.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+    tags: ["AWS Lambda", "Python", "PostgreSQL", "Railway"],
+    github: "https://github.com/PATINO-0/Events_notification",
     featured: true,
   },
   {
-    title: "Health & Fitness App",
-    description: "Aplicación de seguimiento de salud con planes personalizados y estadísticas detalladas.",
-    image: "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80",
-    tags: ["Flutter", "Firebase", "ML Kit"],
-    github: "#",
-    demo: "#",
+    title: "Rutina Online - App de Bitácoras",
+    description: "Aplicación móvil para creación y gestión de rutinas tipo bitácora con almacenamiento local y seguimiento de progreso personal.",
+    image: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=800&q=80",
+    tags: ["Flutter", "Dart", "SQLite", "Mobile"],
+    github: "https://github.com/PATINO-0/Rutina_online",
     featured: false,
   },
 ];
@@ -107,17 +85,21 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             className="absolute bottom-4 left-4 right-4 flex gap-3 z-10"
           >
             <a
-              href={project.demo}
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 transition-colors"
             >
-              <ExternalLink className="w-4 h-4" />
-              Demo
+              <Github className="w-4 h-4" />
+              Ver Repo
             </a>
             <a
               href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center w-10 h-10 rounded-full liquid-glass backdrop-blur-xl hover:bg-white/20 transition-colors"
             >
-              <Github className="w-5 h-5 text-white" />
+              <ExternalLink className="w-5 h-5 text-white" />
             </a>
           </motion.div>
         </div>
@@ -163,17 +145,17 @@ export default function Projects() {
             Trabajos destacados
           </h2>
           <p className="body-large dark:text-white/70 light:text-black/70 max-w-3xl mx-auto mt-6">
-            Una selección de proyectos que demuestran mi experiencia técnica y pasión por el desarrollo.
+            Una selección de proyectos personales que demuestran mi experiencia técnica en diferentes tecnologías.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {projects.map((project, i) => (
             <ProjectCard key={i} project={project} index={i} />
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA - Ahora apunta a tu GitHub */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -181,10 +163,13 @@ export default function Projects() {
           className="text-center mt-16"
         >
           <a
-            href="#contacto"
+            href="https://github.com/PATINO-0?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 apple-btn"
           >
-            Ver todos los proyectos
+            <Github className="w-5 h-5" />
+            Ver todos mis repositorios
             <ExternalLink className="w-4 h-4" />
           </a>
         </motion.div>

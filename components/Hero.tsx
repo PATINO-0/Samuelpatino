@@ -135,7 +135,7 @@ export default function Hero() {
                 transition={{ delay: 0.7, duration: 0.8 }}
                 className="body-large dark:text-white/70 light:text-black/70 mb-8"
               >
-                Soy Samuel Patiño, ingeniero de software especializado en desarrollo full-stack.
+                Soy Samuel Patiño, ingeniero de software especializado en desarrollo.
                 Transformo ideas en productos digitales elegantes, funcionales y memorables.
               </motion.p>
 
