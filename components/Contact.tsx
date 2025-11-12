@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Instagram, Send, CheckCircle } from "lucide-react";
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Instagram, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { useState } from "react";
 
 const socialLinks = [
@@ -19,20 +19,50 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormState({ name: "", email: "", subject: "", message: "" });
-    }, 3000);
+    setError(false);
+
+    try {
+      // Usando EmailJS
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_px7849d', // Reemplazar con tu Service ID de EmailJS
+          template_id: 'template_kvx8nrf', // Reemplazar con tu Template ID de EmailJS
+          user_id: 'aK4jDRqKbpurof971', // Reemplazar con tu Public Key de EmailJS
+          template_params: {
+            from_name: formState.name,
+            from_email: formState.email,
+            subject: formState.subject,
+            message: formState.message,
+            to_email: 'samipatino1002@gmail.com',
+          },
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormState({ name: "", email: "", subject: "", message: "" });
+        }, 3000);
+      } else {
+        throw new Error('Error al enviar el mensaje');
+      }
+    } catch (err) {
+      console.error('Error:', err);
+      setError(true);
+      setTimeout(() => setError(false), 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -70,7 +100,7 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            {/* Card Email CON permanent-dark-card */}
+            {/* Card Email */}
             <div className="permanent-dark-card rounded-[var(--radius-lg)] p-6 hover-lift group">
               <div className="flex items-start gap-4">
                 <motion.div
@@ -91,7 +121,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Card Teléfono CON permanent-dark-card */}
+            {/* Card Teléfono */}
             <div className="permanent-dark-card rounded-[var(--radius-lg)] p-6 hover-lift group">
               <div className="flex items-start gap-4">
                 <motion.div
@@ -102,12 +132,19 @@ export default function Contact() {
                 </motion.div>
                 <div>
                   <h4 className="font-semibold mb-1">Teléfono</h4>
-                  <p className="text-secondary text-sm">+57 3147198246</p>
+                  <a 
+                    href="https://wa.me/573147198246"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-secondary hover:text-accent text-sm transition-colors"
+                  >
+                    +57 314 719 8246
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Card Ubicación CON permanent-dark-card */}
+            {/* Card Ubicación */}
             <div className="permanent-dark-card rounded-[var(--radius-lg)] p-6 hover-lift group">
               <div className="flex items-start gap-4">
                 <motion.div
@@ -151,7 +188,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Formulario CON permanent-dark-card */}
+          {/* Formulario */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -227,7 +264,9 @@ export default function Contact() {
                 whileTap={{ scale: isSubmitting || isSubmitted ? 1 : 0.98 }}
                 className={`w-full apple-btn flex items-center justify-center gap-2 ${
                   isSubmitted ? "bg-green-500 hover:bg-green-500" : ""
-                } ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
+                } ${error ? "bg-red-500 hover:bg-red-500" : ""} ${
+                  isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               >
                 {isSubmitting ? (
                   <>
@@ -242,6 +281,11 @@ export default function Contact() {
                   <>
                     <CheckCircle className="w-5 h-5" />
                     ¡Mensaje enviado!
+                  </>
+                ) : error ? (
+                  <>
+                    <AlertCircle className="w-5 h-5" />
+                    Error al enviar
                   </>
                 ) : (
                   <>
