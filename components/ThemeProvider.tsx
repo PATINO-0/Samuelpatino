@@ -21,21 +21,22 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Sincronizar con localStorage y sistema
-    const stored = localStorage.getItem("theme") as Theme | null;
-    if (stored) {
-      setTheme(stored);
-      document.body.classList.remove("dark", "light");
-      document.body.classList.add(stored);
-    } else {
-      // Detectar preferencia del sistema
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const systemTheme = prefersDark ? "dark" : "light";
-      setTheme(systemTheme);
-      document.body.classList.add(systemTheme);
-    }
+    // 1. Detectar preferencia del sistema
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     
-    // Marcar como montado
+    // 2. Verificar si hay tema guardado en localStorage
+    const stored = localStorage.getItem("theme") as Theme | null;
+    
+    // 3. Prioridad: localStorage > Preferencia del sistema
+    const initialTheme = stored || (prefersDark ? "dark" : "light");
+    
+    // 4. Aplicar tema al DOM
+    setTheme(initialTheme);
+    document.documentElement.classList.remove("dark", "light");
+    document.documentElement.classList.add(initialTheme);
+    document.body.classList.remove("dark", "light");
+    document.body.classList.add(initialTheme);
+    
     setMounted(true);
   }, []);
 
@@ -43,12 +44,14 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
+    
+    // Aplicar al HTML y Body
+    document.documentElement.classList.remove("dark", "light");
+    document.documentElement.classList.add(newTheme);
     document.body.classList.remove("dark", "light");
     document.body.classList.add(newTheme);
   };
 
-  // IMPORTANTE: Siempre proveer el contexto, incluso antes de montar
-  // Esto evita el error "useTheme must be used within ThemeProvider"
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
