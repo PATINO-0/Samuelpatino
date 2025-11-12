@@ -55,7 +55,7 @@
   @apply py-20 md:py-28 lg:py-36;
 }
 
-/* Liquid Glass Effect (Apple WWDC 2025) */
+/* Liquid Glass Effect */
 @utility liquid-glass {
   background: var(--glass-dark);
   backdrop-filter: blur(40px) saturate(180%);
@@ -68,13 +68,14 @@
   filter: url(#liquid-glass-filter);
 }
 
-/* Apple Cards */
+/* Apple Cards - Dark Mode */
 @utility apple-card-dark {
   @apply rounded-[var(--radius-lg)] border border-white/5;
   background: var(--color-dark-elevated);
   box-shadow: var(--shadow-md);
 }
 
+/* Apple Cards - Light Mode */
 @utility apple-card-light {
   @apply rounded-[var(--radius-lg)] border border-black/5;
   background: var(--color-light-elevated);
@@ -107,7 +108,7 @@
 
 /* ===== BASE ===== */
 :root {
-  color-scheme: dark;
+  color-scheme: light dark;
 }
 
 html {
@@ -117,19 +118,21 @@ html {
 }
 
 body {
-  @apply font-sans antialiased;
+  @apply font-sans antialiased transition-colors duration-300;
   font-size: 17px;
   line-height: 1.47059;
 }
 
-/* Dark Mode por defecto */
+/* Dark Mode */
 body.dark {
-  @apply bg-dark-bg text-dark-text;
+  background: var(--color-dark-bg);
+  color: var(--color-dark-text);
 }
 
 /* Light Mode */
 body.light {
-  @apply bg-light-bg text-light-text;
+  background: var(--color-light-bg);
+  color: var(--color-light-text);
 }
 
 /* Light mode overrides para liquid-glass */
@@ -292,4 +295,80 @@ svg#liquid-glass-svg {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ===== CORRECCIONES DE CONTRASTE PARA LIGHT MODE ===== */
+
+/* Textos en Light Mode */
+.light .dark\:text-white {
+  color: var(--color-light-text) !important;
+}
+
+.light .dark\:text-white\/90 {
+  color: rgba(29, 29, 31, 0.9) !important;
+}
+
+.light .dark\:text-white\/70 {
+  color: rgba(29, 29, 31, 0.7) !important;
+}
+
+.light .dark\:text-white\/60 {
+  color: rgba(29, 29, 31, 0.6) !important;
+}
+
+.light .dark\:text-white\/40 {
+  color: rgba(29, 29, 31, 0.4) !important;
+}
+
+/* Backgrounds en Light Mode */
+.light .dark\:bg-dark-bg {
+  background: var(--color-light-bg) !important;
+}
+
+.light .dark\:bg-dark-surface {
+  background: var(--color-light-surface) !important;
+}
+
+.light .dark\:bg-dark-elevated {
+  background: var(--color-light-elevated) !important;
+}
+
+/* Borders en Light Mode */
+.light .dark\:border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .dark\:border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Hover states en Light Mode */
+.light .dark\:hover\:bg-white\/20:hover {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .dark\:bg-white\/10 {
+  background: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Orbs y efectos en Light Mode */
+.light .dark\:bg-accent\/10 {
+  background: rgba(0, 113, 227, 0.15) !important;
+}
+
+.light .dark\:bg-purple-600\/10 {
+  background: rgba(147, 51, 234, 0.15) !important;
+}
+
+.light .dark\:bg-purple-600\/5 {
+  background: rgba(147, 51, 234, 0.1) !important;
+}
+
+/* Gradientes en Light Mode */
+.light .dark\:bg-gradient-to-b {
+  background: linear-gradient(to bottom, 
+    var(--color-light-bg), 
+    var(--color-light-surface), 
+    var(--color-light-bg)
+  ) !important;
 }

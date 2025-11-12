@@ -16,16 +16,12 @@ export const metadata = {
   keywords: "ingeniero de software, desarrollador full-stack, React, Next.js, portafolio, Samuel Patiño",
   authors: [{ name: "Samuel Patiño" }],
   viewport: "width=device-width, initial-scale=1",
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
-  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans dark`}>
+      <body className={`${inter.variable} font-sans`}>
         {/* SVG Liquid Glass Filter */}
         <svg id="liquid-glass-svg" style={{ position: 'absolute', width: 0, height: 0 }}>
           <defs>
