@@ -25,10 +25,10 @@ const footerLinks = {
     {
       title: "Social",
       links: [
-        { label: "GitHub", href: "https://github.com" },
+        { label: "GitHub", href: "https://github.com/PATINO-0?tab=repositories" },
         { label: "LinkedIn", href: "https://linkedin.com" },
         { label: "Twitter", href: "https://twitter.com" },
-        { label: "Instagram", href: "https://instagram.com" },
+        { label: "Instagram", href: "https://www.instagram.com/samuel.patino_?igsh=MTNreTZ4NDI3Y2JmNg==" },
       ],
     },
   ],

@@ -4,10 +4,10 @@ import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Instagram, Send, CheckC
 import { useState } from "react";
 
 const socialLinks = [
-  { icon: <Github />, href: "https://github.com/samuelpatino", label: "GitHub" },
+  { icon: <Github />, href: "https://github.com/PATINO-0?tab=repositories", label: "GitHub" },
   { icon: <Linkedin />, href: "https://linkedin.com/in/samuelpatino", label: "LinkedIn" },
-  { icon: <Twitter />, href: "https://twitter.com/samuelpatino", label: "Twitter" },
-  { icon: <Instagram />, href: "https://instagram.com/samuelpatino", label: "Instagram" },
+  { icon: <Twitter />, href: "https://wa.me/qr/KCUMCSSLOBS5F1", label: "Twitter" },
+  { icon: <Instagram />, href: "https://www.instagram.com/samuel.patino_?igsh=MTNreTZ4NDI3Y2JmNg==", label: "Instagram" },
 ];
 
 export default function Contact() {
@@ -102,7 +102,7 @@ export default function Contact() {
                 </motion.div>
                 <div>
                   <h4 className="font-semibold mb-1">Teléfono</h4>
-                  <p className="text-secondary text-sm">+1 (555) 123-4567</p>
+                  <p className="text-secondary text-sm">+57 3147198246</p>
                 </div>
               </div>
             </div>
