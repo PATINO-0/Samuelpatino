@@ -430,3 +430,61 @@ svg#liquid-glass-svg {
 .light .dark-card span {
   color: rgba(245, 245, 247, 0.8) !important;
 }
+
+/* ===== CARDS CON FONDO OSCURO PERMANENTE (SIEMPRE NEGRO) ===== */
+
+/* Clase para cards que siempre deben ser oscuras */
+.permanent-dark-card {
+  background: #1C1C1E !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16) !important;
+}
+
+/* En light mode, mantener fondo oscuro y aumentar sombra */
+.light .permanent-dark-card {
+  background: #1C1C1E !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* TEXTO SIEMPRE BLANCO en estas cards */
+.permanent-dark-card h1,
+.permanent-dark-card h2,
+.permanent-dark-card h3,
+.permanent-dark-card h4,
+.permanent-dark-card h5,
+.permanent-dark-card h6,
+.permanent-dark-card p,
+.permanent-dark-card span,
+.permanent-dark-card blockquote,
+.permanent-dark-card div {
+  color: #F5F5F7 !important;
+}
+
+/* Textos secundarios */
+.permanent-dark-card .text-secondary {
+  color: rgba(245, 245, 247, 0.7) !important;
+}
+
+/* Tags y badges */
+.permanent-dark-card .tag,
+.permanent-dark-card [class*="bg-white/5"],
+.permanent-dark-card [class*="dark:bg-white/5"] {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #F5F5F7 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Iconos */
+.permanent-dark-card svg {
+  color: #F5F5F7 !important;
+}
+
+/* Links */
+.permanent-dark-card a:not(.apple-btn):not([class*="bg-"]) {
+  color: #0A84FF !important;
+}
+
+/* Borders */
+.permanent-dark-card [class*="border-"] {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}

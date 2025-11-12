@@ -42,7 +42,6 @@ export default function About() {
 
   return (
     <section id="acerca" ref={containerRef} className="section-space relative overflow-hidden">
-      {/* Fondo con orbs parallax */}
       <motion.div
         style={{ y, opacity }}
         className="absolute top-1/4 right-0 w-[500px] h-[500px] dark:bg-accent/5 light:bg-accent/10 rounded-full blur-[100px] animate-glow pointer-events-none"
@@ -76,9 +75,8 @@ export default function About() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ delay: i * 0.15, duration: 0.7 }}
               whileHover={{ scale: 1.02, rotateY: 2 }}
-              className="group relative dark:apple-card-dark light:apple-card-light p-8 hover-lift cursor-pointer"
+              className="group relative permanent-dark-card rounded-[var(--radius-lg)] p-8 hover-lift cursor-pointer"
             >
-              {/* Glow effect on hover */}
               <div className={`absolute -inset-0.5 bg-gradient-to-r ${item.gradient} rounded-[var(--radius-lg)] opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
               
               <div className="relative">
@@ -89,15 +87,14 @@ export default function About() {
                 >
                   {item.icon}
                 </motion.div>
-                <h3 className="dark:text-white light:text-black font-bold text-xl mb-3">
+                <h3 className="font-bold text-xl mb-3">
                   {item.title}
                 </h3>
-                <p className="dark:text-white/70 light:text-black/70 leading-relaxed">
+                <p className="text-secondary leading-relaxed">
                   {item.desc}
                 </p>
               </div>
 
-              {/* Arrow indicator */}
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 whileHover={{ opacity: 1, x: 0 }}

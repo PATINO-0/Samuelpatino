@@ -6,32 +6,32 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    name: "David Martínez",
-    role: "CEO, Tech Startup",
+    name: "Oscar Patiño",
+    role: "Medico especialista en Fisiatra",
     avatar: "https://i.pravatar.cc/150?img=12",
     quote: "Samuel es un profesional excepcional. Su atención al detalle, compromiso con la calidad y capacidad para entregar proyectos complejos en tiempo récord son verdaderamente impresionantes. Sin duda, uno de los mejores desarrolladores con los que he trabajado.",
     rating: 5,
-    company: "TechVision Inc.",
+    company: "Unidad de fisiatria",
   },
   {
     name: "Lina Viveros",
-    role: "Product Manager",
+    role: "Ingeniera de Software",
     avatar: "/assets/galeria/Lina.jpeg",
     quote: "Trabajar con Samuel fue una experiencia increíble. No solo tiene habilidades técnicas sobresalientes, sino que también entiende profundamente las necesidades del negocio. Entregó el proyecto antes de tiempo y superó todas nuestras expectativas.",
     rating: 5,
     company: "Digital Solutions",
   },
   {
-    name: "Diego Fernández",
-    role: "CTO, Digital Agency",
+    name: "Diana Patiño",
+    role: "Desarrolladora de Software",
     avatar: "https://i.pravatar.cc/150?img=33",
     quote: "Su capacidad técnica, creatividad y habilidades de comunicación hacen que sea un placer colaborar con él en cualquier proyecto. Samuel no solo escribe código excelente, también propone soluciones innovadoras que agregan valor real al producto.",
     rating: 5,
     company: "CreativeCode Studio",
   },
   {
-    name: "Esteban Jimenez",
-    role: "Founder & Designer",
+    name: "Andres Zambrano",
+    role: "Ingeniero en Sitemas",
     avatar: "https://i.pravatar.cc/150?img=25",
     quote: "La colaboración con Samuel fue fluida y productiva. Su comprensión del diseño y la experiencia del usuario, combinada con sus habilidades de desarrollo, resultó en un producto final que superó nuestras expectativas más ambiciosas.",
     rating: 5,
@@ -118,10 +118,11 @@ export default function Testimonials() {
                 }}
                 className="absolute inset-0"
               >
-                <div className="dark:apple-card-dark light:apple-card-light p-8 md:p-12 h-full flex flex-col justify-between hover-lift">
+                {/* Card con permanent-dark-card */}
+                <div className="permanent-dark-card rounded-[var(--radius-lg)] p-8 md:p-12 h-full flex flex-col justify-between hover-lift">
                   {/* Quote icon */}
                   <div className="mb-6">
-                    <Quote className="w-12 h-12 dark:text-accent/30 light:text-accent/30" />
+                    <Quote className="w-12 h-12 text-accent/30" />
                   </div>
 
                   {/* Rating */}
@@ -139,25 +140,26 @@ export default function Testimonials() {
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="dark:text-white/90 light:text-black/90 text-lg md:text-xl leading-relaxed mb-8 flex-1">
+                  <blockquote className="text-lg md:text-xl leading-relaxed mb-8 flex-1">
                     "{testimonials[current].quote}"
                   </blockquote>
 
                   {/* Author */}
-                  <div className="flex items-center gap-4 pt-6 border-t dark:border-white/10 light:border-black/10">
+                  <div className="flex items-center gap-4 pt-6 border-t">
                     <div className="relative w-14 h-14 rounded-full overflow-hidden ring-2 ring-accent/20">
                       <Image
                         src={testimonials[current].avatar}
                         alt={testimonials[current].name}
-                        fill
+                        width={56}
+                        height={56}
                         className="object-cover"
                       />
                     </div>
                     <div>
-                      <p className="dark:text-white light:text-black font-bold text-lg">
+                      <p className="font-bold text-lg">
                         {testimonials[current].name}
                       </p>
-                      <p className="dark:text-white/60 light:text-black/60 text-sm">
+                      <p className="text-secondary text-sm">
                         {testimonials[current].role}
                       </p>
                       <p className="text-accent text-xs font-medium mt-0.5">
@@ -178,7 +180,7 @@ export default function Testimonials() {
                 className="w-12 h-12 rounded-full dark:bg-white/10 light:bg-black/10 flex items-center justify-center hover:dark:bg-white/20 hover:light:bg-black/20 transition-colors"
                 aria-label="Anterior"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-5 h-5 dark:text-white light:text-black" />
               </motion.button>
 
               {/* Dots */}
@@ -207,7 +209,7 @@ export default function Testimonials() {
                 className="w-12 h-12 rounded-full dark:bg-white/10 light:bg-black/10 flex items-center justify-center hover:dark:bg-white/20 hover:light:bg-black/20 transition-colors"
                 aria-label="Siguiente"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-5 h-5 dark:text-white light:text-black" />
               </motion.button>
             </div>
           </div>

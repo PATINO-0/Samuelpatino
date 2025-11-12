@@ -1,5 +1,5 @@
 "use client";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ExternalLink, Github, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -74,7 +74,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       onMouseLeave={() => setIsHovered(false)}
       className="group relative"
     >
-      <div className="dark:apple-card-dark light:apple-card-light overflow-hidden hover-lift">
+      <div className="rounded-[var(--radius-lg)] overflow-hidden hover-lift">
         {/* Imagen */}
         <div className="relative h-56 md:h-64 overflow-hidden">
           <Image
@@ -94,7 +94,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
               className="absolute top-4 right-4 px-3 py-1.5 rounded-full liquid-glass backdrop-blur-xl flex items-center gap-1.5"
             >
               <Sparkles className="w-3 h-3 text-yellow-400" />
-              <span className="text-xs font-semibold dark:text-white light:text-black">
+              <span className="text-xs font-semibold text-white">
                 Destacado
               </span>
             </motion.div>
@@ -122,19 +122,19 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           </motion.div>
         </div>
 
-        {/* Content */}
-        <div className="p-6">
-          <h3 className="dark:text-white light:text-black font-bold text-xl mb-2">
+        {/* Content - CON CLASE permanent-dark-card */}
+        <div className="permanent-dark-card p-6 rounded-b-[var(--radius-lg)]">
+          <h3 className="font-bold text-xl mb-2">
             {project.title}
           </h3>
-          <p className="dark:text-white/70 light:text-black/70 text-sm leading-relaxed mb-4">
+          <p className="text-secondary text-sm leading-relaxed mb-4">
             {project.description}
           </p>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 rounded-lg text-xs font-medium dark:bg-white/5 light:bg-black/5 dark:text-white light:text-black dark:border-white/10 light:border-black/10 border"
+                className="tag px-2.5 py-1 rounded-lg text-xs font-medium border"
               >
                 {tag}
               </span>

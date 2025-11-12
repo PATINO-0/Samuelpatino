@@ -24,13 +24,11 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simular envío
     await new Promise((resolve) => setTimeout(resolve, 2000));
     
     setIsSubmitting(false);
     setIsSubmitted(true);
     
-    // Reset después de 3 segundos
     setTimeout(() => {
       setIsSubmitted(false);
       setFormState({ name: "", email: "", subject: "", message: "" });
@@ -43,7 +41,6 @@ export default function Contact() {
 
   return (
     <section id="contacto" className="section-space dark:bg-dark-surface light:bg-light-surface relative overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0 dark:bg-gradient-to-b dark:from-dark-surface dark:via-dark-bg dark:to-dark-surface light:bg-gradient-to-b light:from-light-surface light:via-light-bg light:to-light-surface" />
 
       <div className="container relative z-10">
@@ -73,7 +70,8 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <div className="dark:apple-card-dark light:apple-card-light p-6 hover-lift group">
+            {/* Card Email CON permanent-dark-card */}
+            <div className="permanent-dark-card rounded-[var(--radius-lg)] p-6 hover-lift group">
               <div className="flex items-start gap-4">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
@@ -82,7 +80,7 @@ export default function Contact() {
                   <Mail className="w-5 h-5" />
                 </motion.div>
                 <div>
-                  <h4 className="dark:text-white light:text-black font-semibold mb-1">Email</h4>
+                  <h4 className="font-semibold mb-1">Email</h4>
                   <a
                     href="mailto:samipatino1002@gmail.com"
                     className="text-accent hover:underline text-sm"
@@ -93,7 +91,8 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="dark:apple-card-dark light:apple-card-light p-6 hover-lift group">
+            {/* Card Teléfono CON permanent-dark-card */}
+            <div className="permanent-dark-card rounded-[var(--radius-lg)] p-6 hover-lift group">
               <div className="flex items-start gap-4">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
@@ -102,13 +101,14 @@ export default function Contact() {
                   <Phone className="w-5 h-5" />
                 </motion.div>
                 <div>
-                  <h4 className="dark:text-white light:text-black font-semibold mb-1">Teléfono</h4>
-                  <p className="dark:text-white/70 light:text-black/70 text-sm">+1 (555) 123-4567</p>
+                  <h4 className="font-semibold mb-1">Teléfono</h4>
+                  <p className="text-secondary text-sm">+1 (555) 123-4567</p>
                 </div>
               </div>
             </div>
 
-            <div className="dark:apple-card-dark light:apple-card-light p-6 hover-lift group">
+            {/* Card Ubicación CON permanent-dark-card */}
+            <div className="permanent-dark-card rounded-[var(--radius-lg)] p-6 hover-lift group">
               <div className="flex items-start gap-4">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
@@ -117,8 +117,8 @@ export default function Contact() {
                   <MapPin className="w-5 h-5" />
                 </motion.div>
                 <div>
-                  <h4 className="dark:text-white light:text-black font-semibold mb-1">Ubicación</h4>
-                  <p className="dark:text-white/70 light:text-black/70 text-sm">
+                  <h4 className="font-semibold mb-1">Ubicación</h4>
+                  <p className="text-secondary text-sm">
                     San Juan de Pasto, Colombia
                   </p>
                 </div>
@@ -151,17 +151,17 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Formulario */}
+          {/* Formulario CON permanent-dark-card */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <form onSubmit={handleSubmit} className="dark:apple-card-dark light:apple-card-light p-8 space-y-6">
+            <form onSubmit={handleSubmit} className="permanent-dark-card rounded-[var(--radius-lg)] p-8 space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block dark:text-white light:text-black font-medium mb-2 text-sm">
+                  <label className="block font-medium mb-2 text-sm">
                     Nombre *
                   </label>
                   <input
@@ -171,11 +171,11 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Tu nombre"
-                    className="w-full px-4 py-3 rounded-xl dark:bg-white/5 light:bg-black/5 border-2 dark:border-white/10 light:border-black/10 dark:text-white light:text-black placeholder:dark:text-white/40 placeholder:light:text-black/40 outline-none focus:border-accent transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border-2 border-white/10 text-white placeholder:text-white/40 outline-none focus:border-accent transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block dark:text-white light:text-black font-medium mb-2 text-sm">
+                  <label className="block font-medium mb-2 text-sm">
                     Email *
                   </label>
                   <input
@@ -185,13 +185,13 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="tu@email.com"
-                    className="w-full px-4 py-3 rounded-xl dark:bg-white/5 light:bg-black/5 border-2 dark:border-white/10 light:border-black/10 dark:text-white light:text-black placeholder:dark:text-white/40 placeholder:light:text-black/40 outline-none focus:border-accent transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border-2 border-white/10 text-white placeholder:text-white/40 outline-none focus:border-accent transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block dark:text-white light:text-black font-medium mb-2 text-sm">
+                <label className="block font-medium mb-2 text-sm">
                   Asunto *
                 </label>
                 <input
@@ -201,12 +201,12 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="¿En qué puedo ayudarte?"
-                  className="w-full px-4 py-3 rounded-xl dark:bg-white/5 light:bg-black/5 border-2 dark:border-white/10 light:border-black/10 dark:text-white light:text-black placeholder:dark:text-white/40 placeholder:light:text-black/40 outline-none focus:border-accent transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border-2 border-white/10 text-white placeholder:text-white/40 outline-none focus:border-accent transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block dark:text-white light:text-black font-medium mb-2 text-sm">
+                <label className="block font-medium mb-2 text-sm">
                   Mensaje *
                 </label>
                 <textarea
@@ -216,7 +216,7 @@ export default function Contact() {
                   required
                   rows={6}
                   placeholder="Cuéntame sobre tu proyecto..."
-                  className="w-full px-4 py-3 rounded-xl dark:bg-white/5 light:bg-black/5 border-2 dark:border-white/10 light:border-black/10 dark:text-white light:text-black placeholder:dark:text-white/40 placeholder:light:text-black/40 outline-none focus:border-accent transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border-2 border-white/10 text-white placeholder:text-white/40 outline-none focus:border-accent transition-colors resize-none"
                 />
               </div>
 

@@ -69,7 +69,7 @@ export default function Timeline() {
         </motion.div>
 
         <div className="max-w-4xl mx-auto relative">
-          {/* Línea vertical central */}
+          {/* Línea vertical */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 dark:bg-white/10 light:bg-black/10" />
           <motion.div
             style={{ height: lineHeight }}
@@ -88,7 +88,7 @@ export default function Timeline() {
                   i % 2 === 0 ? "" : "md:direction-rtl"
                 }`}
               >
-                {/* Dot en la línea */}
+                {/* Dot */}
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -97,7 +97,7 @@ export default function Timeline() {
                   className="absolute left-8 md:left-1/2 w-5 h-5 -ml-2.5 rounded-full bg-accent border-4 dark:border-dark-bg light:border-light-bg z-10 shadow-lg"
                 />
 
-                {/* Card */}
+                {/* Card CON permanent-dark-card */}
                 <div
                   className={`ml-20 md:ml-0 ${
                     i % 2 === 0 ? "md:text-right md:pr-16" : "md:pl-16 md:col-start-2"
@@ -105,19 +105,19 @@ export default function Timeline() {
                 >
                   <motion.div
                     whileHover={{ scale: 1.02, y: -4 }}
-                    className="group dark:apple-card-dark light:apple-card-light p-6 md:p-8 hover-lift cursor-pointer"
+                    className="group permanent-dark-card rounded-[var(--radius-lg)] p-6 md:p-8 hover-lift cursor-pointer"
                   >
-                    {/* Badge de año */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full dark:bg-accent/10 light:bg-accent/10 text-accent text-sm font-semibold mb-4">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
                       <Calendar className="w-4 h-4" />
                       {exp.year}
                     </div>
 
-                    <h3 className="dark:text-white light:text-black font-bold text-2xl mb-2">
+                    <h3 className="font-bold text-2xl mb-2">
                       {exp.title}
                     </h3>
 
-                    <div className="flex items-center gap-3 dark:text-white/60 light:text-black/60 text-sm mb-4">
+                    <div className="flex items-center gap-3 text-secondary text-sm mb-4">
                       <span className="font-medium">{exp.company}</span>
                       <span>•</span>
                       <span className="flex items-center gap-1">
@@ -126,7 +126,7 @@ export default function Timeline() {
                       </span>
                     </div>
 
-                    <p className="dark:text-white/70 light:text-black/70 leading-relaxed mb-6">
+                    <p className="text-secondary leading-relaxed mb-6">
                       {exp.description}
                     </p>
 
@@ -135,7 +135,7 @@ export default function Timeline() {
                       {exp.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 rounded-lg text-xs font-medium dark:bg-white/5 light:bg-black/5 dark:text-white light:text-black dark:border-white/10 light:border-black/10 border"
+                          className="tag px-3 py-1 rounded-lg text-xs font-medium border"
                         >
                           {tech}
                         </span>
