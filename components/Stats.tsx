@@ -35,7 +35,7 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   }, [isInView, target]);
 
   return (
-    <span ref={ref} className="text-5xl md:text-6xl font-bold tabular-nums">
+    <span ref={ref} className="text-5xl md:text-6xl font-bold tabular-nums stat-number">
       {count}
       {suffix}
     </span>
@@ -82,7 +82,8 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
       style={{ x, y, rotateX, rotateY }}
       className="group relative perspective-1000"
     >
-      <div className="dark:apple-card-dark light:apple-card-light p-8 text-center hover-lift transform-gpu">
+      {/* ✅ AGREGADA clase dark-card */}
+      <div className="dark-card rounded-[var(--radius-lg)] p-8 text-center hover-lift transform-gpu">
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -90,13 +91,13 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
         >
           {stat.icon}
         </motion.div>
-        <div className="dark:text-white light:text-black">
+        <div>
           <Counter target={stat.value} suffix={stat.suffix} />
         </div>
-        <p className="dark:text-white/60 light:text-black/60 text-sm mt-3 font-medium">
+        <p className="card-text-secondary text-sm mt-3 font-medium">
           {stat.label}
         </p>
-        {/* Shimmer effect on hover */}
+        {/* Shimmer effect */}
         <div className="absolute inset-0 rounded-[var(--radius-lg)] overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div className="shimmer absolute inset-0" />
         </div>

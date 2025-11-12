@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Code2, Server, Database, Layers, Box, Cpu, Cloud, Terminal } from "lucide-react";
+import { Code2, Server, Database, Cloud, Cpu, Terminal } from "lucide-react";
 
 const skillGroups = [
   {
@@ -98,7 +98,7 @@ export default function Skills() {
               variants={item}
               whileHover={{ y: -8, rotateY: 3 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="group dark:apple-card-dark light:apple-card-light p-7 hover-lift cursor-pointer"
+              className="group dark-card rounded-[var(--radius-lg)] p-7 hover-lift cursor-pointer"
             >
               <div className="flex items-center gap-4 mb-6">
                 <motion.div
@@ -108,7 +108,7 @@ export default function Skills() {
                 >
                   {group.icon}
                 </motion.div>
-                <h3 className="dark:text-white light:text-black font-bold text-xl">
+                <h3 className="card-title font-bold text-xl">
                   {group.title}
                 </h3>
               </div>
@@ -122,20 +122,20 @@ export default function Skills() {
                     viewport={{ once: true }}
                     transition={{ delay: j * 0.05 }}
                     whileHover={{ scale: 1.1, y: -2 }}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium dark:bg-white/10 dark:text-white light:bg-black/5 light:text-black dark:border-white/10 light:border-black/10 border backdrop-blur-sm transition-colors hover:dark:bg-accent/20 hover:light:bg-accent/10 hover:border-accent"
+                    className="tag px-3 py-1.5 rounded-full text-xs font-medium transition-colors hover:border-accent"
                   >
                     {skill}
                   </motion.span>
                 ))}
               </div>
 
-              {/* Progress bar animation */}
+              {/* Progress bar */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="h-1 dark:bg-white/5 light:bg-black/5 rounded-full overflow-hidden mt-6"
+                className="h-1 bg-white/5 rounded-full overflow-hidden mt-6"
               >
                 <motion.div
                   initial={{ x: "-100%" }}
@@ -149,7 +149,6 @@ export default function Skills() {
           ))}
         </motion.div>
 
-        {/* Nota */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

@@ -372,3 +372,61 @@ svg#liquid-glass-svg {
     var(--color-light-bg)
   ) !important;
 }
+
+/* ===== CARDS CON FONDO OSCURO PERMANENTE (Stats, Skills, etc.) ===== */
+
+/* Card oscura que mantiene texto blanco en AMBOS modos */
+.dark-card {
+  background: #1C1C1E !important;
+  color: #F5F5F7 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Textos dentro de cards oscuras */
+.dark-card .card-title {
+  color: #F5F5F7 !important;
+}
+
+.dark-card .card-text {
+  color: rgba(245, 245, 247, 0.7) !important;
+}
+
+.dark-card .card-text-secondary {
+  color: rgba(245, 245, 247, 0.6) !important;
+}
+
+/* Números y estadísticas */
+.dark-card .stat-number {
+  color: #FFFFFF !important;
+}
+
+/* Icons dentro de cards oscuras */
+.dark-card svg,
+.dark-card path {
+  color: #F5F5F7 !important;
+}
+
+/* Tags y badges dentro de cards oscuras */
+.dark-card .tag {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #F5F5F7 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Asegurar que en light mode también se mantenga el contraste */
+.light .dark-card {
+  background: #1C1C1E !important;
+  color: #F5F5F7 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.light .dark-card .card-title,
+.light .dark-card h3,
+.light .dark-card h4 {
+  color: #FFFFFF !important;
+}
+
+.light .dark-card p,
+.light .dark-card span {
+  color: rgba(245, 245, 247, 0.8) !important;
+}
