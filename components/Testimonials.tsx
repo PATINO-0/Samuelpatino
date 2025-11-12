@@ -19,7 +19,7 @@ const testimonials = [
     avatar: "/assets/galeria/Lina.jpeg",
     quote: "Trabajar con Samuel fue una experiencia increíble. No solo tiene habilidades técnicas sobresalientes, sino que también entiende profundamente las necesidades del negocio. Entregó el proyecto antes de tiempo y superó todas nuestras expectativas.",
     rating: 5,
-    company: "Digital Solutions",
+    company: "Inem",
   },
   {
     name: "Diana Patiño",
@@ -27,7 +27,7 @@ const testimonials = [
     avatar: "https://i.pravatar.cc/150?img=33",
     quote: "Su capacidad técnica, creatividad y habilidades de comunicación hacen que sea un placer colaborar con él en cualquier proyecto. Samuel no solo escribe código excelente, también propone soluciones innovadoras que agregan valor real al producto.",
     rating: 5,
-    company: "CreativeCode Studio",
+    company: "Cleverpy",
   },
   {
     name: "Andres Zambrano",
@@ -35,7 +35,7 @@ const testimonials = [
     avatar: "https://i.pravatar.cc/150?img=25",
     quote: "La colaboración con Samuel fue fluida y productiva. Su comprensión del diseño y la experiencia del usuario, combinada con sus habilidades de desarrollo, resultó en un producto final que superó nuestras expectativas más ambiciosas.",
     rating: 5,
-    company: "DesignHub",
+    company: "Ceiba",
   },
 ];
 

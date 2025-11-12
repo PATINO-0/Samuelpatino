@@ -1,44 +1,62 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Calendar, MapPin, ExternalLink } from "lucide-react";
+import { Calendar, MapPin, GraduationCap, Briefcase } from "lucide-react";
 import { useRef } from "react";
 
 const experiences = [
   {
-    year: "2024 - Presente",
-    title: "Senior Full-Stack Developer",
-    company: "Tech Solutions Inc.",
-    location: "Remoto",
-    description: "Lideré el desarrollo de aplicaciones web escalables usando React, Next.js y arquitecturas serverless. Implementé sistemas de CI/CD y mejoras de performance que redujeron el tiempo de carga en 60%.",
-    technologies: ["React", "Next.js", "TypeScript", "PostgreSQL", "AWS", "Docker"],
-    link: "#",
-  },
-  {
-    year: "2022 - 2023",
-    title: "Full-Stack Developer",
-    company: "Digital Agency Co.",
+    year: "2025 - Presente",
+    title: "Dictor Médico",
+    company: "Consultorio Dr. Oscar Javier Patiño Villota",
     location: "Pasto, Colombia",
-    description: "Desarrollé múltiples proyectos para clientes internacionales, desde e-commerce hasta dashboards analíticos. Colaboré con equipos multidisciplinarios usando metodologías ágiles.",
-    technologies: ["Vue.js", "Django", "MongoDB", "Redis", "Tailwind"],
-    link: "#",
+    type: "work",
+    description: "Manejo de software especializado en salud para transcripción de historias médicas y carga al sistema. Responsable de la digitalización y gestión de información clínica del consultorio de fisiatría.",
+    technologies: ["Software Médico", "Gestión Documental", "Transcripción"],
   },
   {
-    year: "2021 - 2022",
-    title: "Frontend Developer",
-    company: "StartUp XYZ",
+    year: "2025 - Presente",
+    title: "Desarrollador Freelance",
+    company: "Proyectos Independientes",
     location: "Remoto",
-    description: "Creé interfaces de usuario modernas, responsivas y accesibles. Implementé design systems y componentes reutilizables que aceleraron el desarrollo en 40%.",
-    technologies: ["React", "Tailwind CSS", "TypeScript", "Figma"],
-    link: "#",
+    type: "work",
+    description: "Desarrollo esporádico de proyectos pequeños y aplicaciones tanto web como móviles. Enfocado en ampliar conocimientos en ingeniería de software mediante proyectos reales y aplicación de tecnologías modernas.",
+    technologies: ["React", "Next.js", "Flutter", "Node.js", "Firebase"],
+  },
+  {
+    year: "2024 - Presente",
+    title: "Ingeniería de Software",
+    company: "Universidad Cooperativa de Colombia",
+    location: "Pasto, Colombia",
+    type: "education",
+    description: "Actualmente cursando sexto semestre de Ingeniería de Software. Retomé mis estudios universitarios con aspiraciones de convertirme en ingeniero de software, aplicando conocimientos en desarrollo full-stack.",
+    technologies: ["Ingeniería de Software", "Desarrollo Web", "Bases de Datos", "POO"],
+  },
+  {
+    year: "2023",
+    title: "Seguridad Informática",
+    company: "Platzi",
+    location: "Remoto",
+    type: "education",
+    description: "Completé curso de introducción y conceptos base de seguridad informática. Aprendí fundamentos de ciberseguridad, mejores prácticas y principios de protección de sistemas.",
+    technologies: ["Seguridad Informática", "Ciberseguridad", "Protección de Datos"],
+  },
+  {
+    year: "2021 - 2023",
+    title: "Ingeniería Informática",
+    company: "Politécnico Jaime Isaza Cadavid",
+    location: "Medellín, Colombia",
+    type: "education",
+    description: "Cursé cuatro semestres de Ingeniería Informática. Tuve que retirarme en 2023 debido a una patología que requirió hospitalización durante un mes y tratamientos prolongados. Durante este periodo adquirí sólidas bases en programación y desarrollo de software.",
+    technologies: ["Java", "Estructuras de Datos", "POO", "MySQL", "PostgreSQL", "Python"],
   },
   {
     year: "2020 - 2021",
-    title: "Junior Developer",
-    company: "Dev Studio",
-    location: "Pasto, Colombia",
-    description: "Inicié mi carrera profesional trabajando en proyectos web y móviles. Aprendí las mejores prácticas de desarrollo y colaboración en equipo.",
-    technologies: ["JavaScript", "HTML", "CSS", "PHP", "MySQL"],
-    link: "#",
+    title: "Diseño y Creación de Videojuegos",
+    company: "Platzi",
+    location: "Remoto",
+    type: "education",
+    description: "Realicé múltiples cursos sobre diseño de videojuegos en plataforma remota. Obtuve dos certificados especializados en diseño y creación de videojuegos, aprendiendo los fundamentos del desarrollo de juegos.",
+    technologies: ["Diseño de Videojuegos", "Game Design", "Desarrollo de Juegos"],
   },
 ];
 
@@ -61,11 +79,14 @@ export default function Timeline() {
           className="text-center mb-20"
         >
           <span className="text-accent text-sm font-semibold uppercase tracking-wider">
-            Experiencia
+            Trayectoria
           </span>
           <h2 className="section-title dark:text-white light:text-black mt-4">
-            Mi trayectoria profesional
+            Mi recorrido académico y profesional
           </h2>
+          <p className="body-large dark:text-white/70 light:text-black/70 max-w-3xl mx-auto mt-6">
+            Un camino de aprendizaje continuo y experiencias que han moldeado mi pasión por la tecnología.
+          </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto relative">
@@ -88,7 +109,7 @@ export default function Timeline() {
                   i % 2 === 0 ? "" : "md:direction-rtl"
                 }`}
               >
-                {/* Dot */}
+                {/* Dot con icono según tipo */}
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -105,19 +126,28 @@ export default function Timeline() {
                 >
                   <motion.div
                     whileHover={{ scale: 1.02, y: -4 }}
-                    className="group permanent-dark-card rounded-[var(--radius-lg)] p-6 md:p-8 hover-lift cursor-pointer"
+                    className="group permanent-dark-card rounded-[var(--radius-lg)] p-6 md:p-8 hover-lift"
                   >
-                    {/* Badge */}
+                    {/* Badge con año */}
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
                       <Calendar className="w-4 h-4" />
                       {exp.year}
                     </div>
 
-                    <h3 className="font-bold text-2xl mb-2">
-                      {exp.title}
-                    </h3>
+                    {/* Título con icono según tipo */}
+                    <div className="flex items-start gap-3 mb-2">
+                      {exp.type === "education" ? (
+                        <GraduationCap className="w-6 h-6 text-accent mt-1 shrink-0" />
+                      ) : (
+                        <Briefcase className="w-6 h-6 text-accent mt-1 shrink-0" />
+                      )}
+                      <h3 className="font-bold text-2xl">
+                        {exp.title}
+                      </h3>
+                    </div>
 
-                    <div className="flex items-center gap-3 text-secondary text-sm mb-4">
+                    {/* Empresa y ubicación */}
+                    <div className="flex items-center gap-3 text-secondary text-sm mb-4 ml-9">
                       <span className="font-medium">{exp.company}</span>
                       <span>•</span>
                       <span className="flex items-center gap-1">
@@ -126,12 +156,13 @@ export default function Timeline() {
                       </span>
                     </div>
 
+                    {/* Descripción */}
                     <p className="text-secondary leading-relaxed mb-6">
                       {exp.description}
                     </p>
 
-                    {/* Tech stack */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    {/* Technologies/Skills */}
+                    <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech) => (
                         <span
                           key={tech}
@@ -141,15 +172,6 @@ export default function Timeline() {
                         </span>
                       ))}
                     </div>
-
-                    {/* Link */}
-                    <a
-                      href={exp.link}
-                      className="inline-flex items-center gap-2 text-accent text-sm font-medium hover:underline"
-                    >
-                      Ver más
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
                   </motion.div>
                 </div>
               </motion.div>
